@@ -1,0 +1,59 @@
+"use client";
+
+import { useFilterStore } from "@/store/useFilterStore";
+
+const DAY_LABELS = {
+  1: "Day 1",
+  2: "Day 2",
+  3: "Day 3",
+};
+
+const DAY_SUBTITLES = {
+  1: "프랑스 조계지 & 와이탄",
+  2: "루자쭈이 & 황푸강",
+  3: "티엔즈팡 & 귀국",
+};
+
+interface DayTabsProps {
+  onDayChange?: (day: 1 | 2 | 3) => void;
+}
+
+/**
+ * 날짜 탭 컴포넌트
+ */
+export function DayTabs({ onDayChange }: DayTabsProps) {
+  const { selectedDay, setSelectedDay } = useFilterStore();
+
+  const handleDayClick = (day: 1 | 2 | 3) => {
+    setSelectedDay(day);
+    onDayChange?.(day);
+  };
+
+  return (
+    <div
+      className="flex border-b border-gray-200 bg-white"
+      role="tablist"
+      aria-label="여행 날짜 선택"
+    >
+      {([1, 2, 3] as const).map((day) => (
+        <button
+          key={day}
+          role="tab"
+          aria-selected={selectedDay === day}
+          aria-controls={`day-panel-${day}`}
+          onClick={() => handleDayClick(day)}
+          className={`flex-1 py-3 px-2 text-center transition-colors ${
+            selectedDay === day
+              ? "border-b-2 border-blue-500 text-blue-600 font-semibold"
+              : "text-gray-500 hover:text-gray-700"
+          }`}
+        >
+          <div className="text-sm font-medium">{DAY_LABELS[day]}</div>
+          <div className="text-xs text-gray-400 mt-0.5">
+            {DAY_SUBTITLES[day]}
+          </div>
+        </button>
+      ))}
+    </div>
+  );
+}

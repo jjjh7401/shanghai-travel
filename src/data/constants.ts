@@ -39,7 +39,10 @@ export const CATEGORY_ICONS = {
   nightview: "🌃",
 } as const;
 
-// Amap API 설정
+// Baidu Maps API 설정
+export const BAIDU_MAP_KEY = process.env.NEXT_PUBLIC_BAIDU_MAP_KEY || "";
+
+// Amap API 설정 (레거시, 미사용)
 export const AMAP_KEY = process.env.NEXT_PUBLIC_AMAP_KEY || "";
 export const AMAP_SECURITY_JS_CODE =
   process.env.NEXT_PUBLIC_AMAP_SECURITY_CODE || "";

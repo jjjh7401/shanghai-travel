@@ -3,8 +3,8 @@ import { venues, getVenuesByDay, getVenueById } from "../venues";
 
 describe("venues data", () => {
   describe("데이터 완전성 검증", () => {
-    it("총 37개의 장소가 있다", () => {
-      expect(venues).toHaveLength(37);
+    it("총 21개의 장소가 있다", () => {
+      expect(venues).toHaveLength(21);
     });
 
     it("각 장소는 id를 가진다", () => {
@@ -25,7 +25,7 @@ describe("venues data", () => {
       const venuesWithZhName = venues.filter(
         (v) => v.name.zh && v.name.zh.length > 0
       );
-      expect(venuesWithZhName.length).toBeGreaterThan(20);
+      expect(venuesWithZhName.length).toBeGreaterThan(15);
     });
 
     it("각 장소는 유효한 카테고리를 가진다", () => {
@@ -59,60 +59,72 @@ describe("venues data", () => {
     });
   });
 
-  describe("Day 1 장소 (12개)", () => {
-    it("Day 1에 12개의 장소가 있다", () => {
+  describe("Day 1 장소 (5개)", () => {
+    it("Day 1에 5개의 장소가 있다", () => {
       const day1Venues = getVenuesByDay(1);
-      expect(day1Venues).toHaveLength(12);
+      expect(day1Venues).toHaveLength(5);
     });
 
-    it("점도덕이 Day 1에 포함된다", () => {
+    it("지다오 상하이차이가 Day 1 첫 번째 장소이다", () => {
       const day1Venues = getVenuesByDay(1);
-      const diandude = day1Venues.find((v) => v.id === "day1-diandude");
-      expect(diandude).toBeDefined();
-      expect(diandude?.name.ko).toBe("점도덕");
-      expect(diandude?.name.zh).toBe("點都德");
+      const jidao = day1Venues.find((v) => v.id === "day1-jidao");
+      expect(jidao).toBeDefined();
+      expect(jidao?.name.ko).toBe("지다오 상하이차이");
+      expect(jidao?.order).toBe(1);
     });
 
-    it("와이탄이 nightview 카테고리이다", () => {
+    it("왕츠핀취이가 Day 1 4번째 장소이다", () => {
       const day1Venues = getVenuesByDay(1);
-      const bund = day1Venues.find((v) => v.id === "day1-bund");
-      expect(bund?.category).toBe("nightview");
+      const wangchi = day1Venues.find((v) => v.id === "day1-wangchi");
+      expect(wangchi).toBeDefined();
+      expect(wangchi?.category).toBe("restaurant");
+      expect(wangchi?.order).toBe(4);
     });
 
-    it("라오지우예에 danger 경고가 있다", () => {
+    it("호텔 복귀가 Day 1 마지막 장소이다", () => {
       const day1Venues = getVenuesByDay(1);
-      const laojiu = day1Venues.find((v) => v.id === "day1-laojiu");
-      expect(laojiu?.warnings).toBeDefined();
-      expect(laojiu?.warnings?.length).toBeGreaterThan(0);
-      expect(laojiu?.warnings?.[0].severity).toBe("danger");
-    });
-
-    it("동북사계교자왕 비용이 94 CNY이다", () => {
-      const day1Venues = getVenuesByDay(1);
-      const dongbei = day1Venues.find((v) => v.id === "day1-dongbei");
-      expect(dongbei?.costEstimate?.totalCNY).toBe(94);
-      expect(dongbei?.costEstimate?.totalKRW).toBe(18800);
+      const hotelReturn = day1Venues.find((v) => v.id === "day1-hotel-return");
+      expect(hotelReturn).toBeDefined();
+      expect(hotelReturn?.category).toBe("transport");
+      expect(hotelReturn?.order).toBe(5);
     });
   });
 
-  describe("Day 2 장소 (17개)", () => {
-    it("Day 2에 17개의 장소가 있다", () => {
+  describe("Day 2 장소 (8개)", () => {
+    it("Day 2에 8개의 장소가 있다", () => {
       const day2Venues = getVenuesByDay(2);
-      expect(day2Venues).toHaveLength(17);
+      expect(day2Venues).toHaveLength(8);
     });
 
-    it("상하이타워가 예약 정보를 가진다", () => {
+    it("허마셴성이 Day 2 첫 번째 장소이다", () => {
       const day2Venues = getVenuesByDay(2);
-      const tower = day2Venues.find((v) => v.id === "day2-shanghai-tower");
-      expect(tower?.reservationInfo).toBeDefined();
-      expect(tower?.reservationInfo?.platform).toBe("wechat");
-      expect(tower?.reservationInfo?.required).toBe(true);
+      const hema = day2Venues.find((v) => v.id === "day2-hema");
+      expect(hema).toBeDefined();
+      expect(hema?.order).toBe(1);
+      expect(hema?.missionInfo?.type).toBe("ai_tech");
     });
 
-    it("황푸강 페리 비용이 2 CNY이다", () => {
+    it("월항조루가 Day 2 3번째 장소(점심)이다", () => {
       const day2Venues = getVenuesByDay(2);
-      const ferry = day2Venues.find((v) => v.id === "day2-ferry");
-      expect(ferry?.costEstimate?.totalCNY).toBe(2);
+      const wolyoung = day2Venues.find((v) => v.id === "day2-wolyoung");
+      expect(wolyoung).toBeDefined();
+      expect(wolyoung?.order).toBe(3);
+    });
+
+    it("빙고박스가 Day 2에 포함된다", () => {
+      const day2Venues = getVenuesByDay(2);
+      const bingobox = day2Venues.find((v) => v.id === "day2-bingobox");
+      expect(bingobox).toBeDefined();
+      expect(bingobox?.category).toBe("shopping");
+      expect(bingobox?.order).toBe(7);
+      expect(bingobox?.missionInfo?.type).toBe("ai_tech");
+    });
+
+    it("전취덕이 Day 2 마지막 장소(저녁)이다", () => {
+      const day2Venues = getVenuesByDay(2);
+      const quanjude = day2Venues.find((v) => v.id === "day2-quanjude");
+      expect(quanjude).toBeDefined();
+      expect(quanjude?.order).toBe(8);
     });
   });
 
@@ -132,9 +144,9 @@ describe("venues data", () => {
 
   describe("getVenueById", () => {
     it("ID로 장소를 찾는다", () => {
-      const venue = getVenueById("day1-diandude");
+      const venue = getVenueById("day1-jidao");
       expect(venue).toBeDefined();
-      expect(venue?.name.ko).toBe("점도덕");
+      expect(venue?.name.ko).toBe("지다오 상하이차이");
     });
 
     it("존재하지 않는 ID는 undefined를 반환한다", () => {
@@ -143,17 +155,24 @@ describe("venues data", () => {
     });
   });
 
-  describe("AliPay 경고 관련", () => {
-    it("200 CNY 초과 장소들이 있다", () => {
-      const expensiveVenues = venues.filter(
-        (v) => v.costEstimate && v.costEstimate.totalCNY > 200
+  describe("미션 정보 검증", () => {
+    it("AI 기술 미션이 있는 장소들이 있다", () => {
+      const aiVenues = venues.filter(
+        (v) => v.missionInfo?.type === "ai_tech"
       );
-      expect(expensiveVenues.length).toBeGreaterThan(0);
+      expect(aiVenues.length).toBeGreaterThan(0);
     });
 
-    it("라오지우예 비용이 200 CNY를 초과한다", () => {
-      const laojiu = getVenueById("day1-laojiu");
-      expect(laojiu?.costEstimate?.totalCNY).toBeGreaterThan(200);
+    it("허마셴성이 미션1 인증샷 장소이다", () => {
+      const hema = getVenueById("day2-hema");
+      expect(hema?.missionInfo?.missionNumber).toBe(1);
+      expect(hema?.missionInfo?.type).toBe("ai_tech");
+    });
+
+    it("HARMAY가 소싱 미션 장소이다", () => {
+      const harmay = getVenueById("day2-harmay");
+      expect(harmay?.missionInfo?.type).toBe("sourcing");
+      expect(harmay?.missionInfo?.missionNumber).toBe(2);
     });
   });
 });

@@ -12,11 +12,11 @@ import { VenueCard } from "@/components/venue/VenueCard";
 import { useGeolocation } from "@/hooks/useGeolocation";
 import { CATEGORY_ICONS, CATEGORY_LABELS } from "@/data/constants";
 
-// 바이두 지도는 SSR 미지원이므로 dynamic import
-const BaiduMapContainer = dynamic(
+// Leaflet은 SSR 미지원이므로 dynamic import
+const LeafletMapContainer = dynamic(
   () =>
-    import("@/components/map/BaiduMapContainer").then((m) => ({
-      default: m.BaiduMapContainer,
+    import("@/components/map/LeafletMapContainer").then((m) => ({
+      default: m.LeafletMapContainer,
     })),
   {
     ssr: false,
@@ -71,7 +71,7 @@ export default function MapPage() {
 
       {/* 지도 */}
       <div className="px-3 pt-3" style={{ height: "45vh" }}>
-        <BaiduMapContainer
+        <LeafletMapContainer
           venues={filteredVenues}
           selectedVenueId={selectedVenue?.id}
           onVenueSelect={setSelectedVenue}

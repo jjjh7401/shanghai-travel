@@ -3,8 +3,8 @@ import { venues, getVenuesByDay, getVenueById } from "../venues";
 
 describe("venues data", () => {
   describe("데이터 완전성 검증", () => {
-    it("총 21개의 장소가 있다", () => {
-      expect(venues).toHaveLength(21);
+    it("총 22개의 장소가 있다", () => {
+      expect(venues).toHaveLength(22);
     });
 
     it("각 장소는 id를 가진다", () => {
@@ -90,10 +90,10 @@ describe("venues data", () => {
     });
   });
 
-  describe("Day 2 장소 (8개)", () => {
-    it("Day 2에 8개의 장소가 있다", () => {
+  describe("Day 2 장소 (9개)", () => {
+    it("Day 2에 9개의 장소가 있다", () => {
       const day2Venues = getVenuesByDay(2);
-      expect(day2Venues).toHaveLength(8);
+      expect(day2Venues).toHaveLength(9);
     });
 
     it("허마셴성이 Day 2 첫 번째 장소이다", () => {
@@ -116,15 +116,24 @@ describe("venues data", () => {
       const bingobox = day2Venues.find((v) => v.id === "day2-bingobox");
       expect(bingobox).toBeDefined();
       expect(bingobox?.category).toBe("shopping");
-      expect(bingobox?.order).toBe(7);
+      expect(bingobox?.order).toBe(8);
       expect(bingobox?.missionInfo?.type).toBe("ai_tech");
+    });
+
+    it("우캉맨션이 Day 2 포토스팟으로 포함된다", () => {
+      const day2Venues = getVenuesByDay(2);
+      const wukang = day2Venues.find((v) => v.id === "day2-wukang-mansion");
+      expect(wukang).toBeDefined();
+      expect(wukang?.category).toBe("attraction");
+      expect(wukang?.order).toBe(5);
+      expect(wukang?.missionInfo?.type).toBe("photo");
     });
 
     it("전취덕이 Day 2 마지막 장소(저녁)이다", () => {
       const day2Venues = getVenuesByDay(2);
       const quanjude = day2Venues.find((v) => v.id === "day2-quanjude");
       expect(quanjude).toBeDefined();
-      expect(quanjude?.order).toBe(8);
+      expect(quanjude?.order).toBe(9);
     });
   });
 

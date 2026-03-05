@@ -1,6 +1,6 @@
 import type { Venue } from "@/types/venue";
 
-// 전체 21개 장소 데이터 (IBT 가이드 반영)
+// 전체 22개 장소 데이터 (IBT 가이드 반영)
 export const venues: Venue[] = [
   // ===== Day 1 (5개) - IBT Day 1: Inspiration =====
   // 공식 일정: 지다오 점심(11:00-13:00) → 바이두파크(13:30-15:00) → 딥블루(15:30-17:00) → 왕츠핀취이 저녁(18:00~) → 호텔 복귀
@@ -71,8 +71,8 @@ export const venues: Venue[] = [
     order: 5,
   },
 
-  // ===== Day 2 (8개) - IBT Day 2: Networking (미션 데이) =====
-  // 공식 일정: 10:00~ 허마셴성 → 콜롬비아서클 → 월항조루(점심) → HARMAY → 신천지 → 남경로 → 전취덕(저녁)
+  // ===== Day 2 (9개) - IBT Day 2: Networking (미션 데이) =====
+  // 공식 일정: 10:00~ 허마셴성 → 콜롬비아서클 → 월항조루(점심) → HARMAY → 우캉맨션 → 신천지 → 남경로 → 전취덕(저녁)
   {
     id: "day2-hema",
     name: { ko: "허마셴성", zh: "盒马鲜生" },
@@ -148,6 +148,22 @@ export const venues: Venue[] = [
     order: 4,
   },
   {
+    id: "day2-wukang-mansion",
+    name: { ko: "우캉맨션", zh: "武康大楼" },
+    category: "attraction",
+    dayNumber: 2,
+    coordinates: { lat: 31.2097, lng: 121.4474 },
+    description: "1924년 건축된 상하이 상징 삼각형 빌딩 — 미션 2 포토스팟 ⭐⭐⭐⭐⭐",
+    missionInfo: {
+      type: "photo",
+      missionNumber: 2,
+      description: "패들렛 좋아요 TOP 포토스팟 미션",
+      photoSpotTips: "우캉루와 화이하이루 교차점의 삼각형 모양 구조물 + 플라타너스 가로수 구도 — 상하이 대표 인스타 아이코닉 스팟",
+    },
+    tips: [{ type: "recommendation", content: "패들렛 좋아요 전략 1위 스팟 — 삼각형 구도 사진으로 반응 최고" }],
+    order: 5,
+  },
+  {
     id: "day2-xintiandi",
     name: { ko: "신천지 스쿠먼 골목", zh: "新天地石库门" },
     category: "attraction",
@@ -164,7 +180,7 @@ export const venues: Venue[] = [
       { type: "recommendation", content: "카페 거리 + 쇼핑몰도 함께 이용 가능" },
       { type: "must_know", content: "신천지 내 팝마트 매장 방문 — 라부부 등 소싱 상품 확인" },
     ],
-    order: 5,
+    order: 6,
   },
   {
     id: "day2-popmart",
@@ -185,7 +201,7 @@ export const venues: Venue[] = [
       { type: "warning", content: "정품 구매는 팝마트 공식 매장에서! 노점 판매품은 가품 주의" },
       { type: "must_know", content: "뽑기 전 재고 확인 필수" },
     ],
-    order: 6,
+    order: 7,
   },
   {
     id: "day2-bingobox",
@@ -204,7 +220,7 @@ export const venues: Venue[] = [
       { type: "must_know", content: "WeChat Pay 또는 알리페이로 입장 및 결제" },
       { type: "recommendation", content: "AI 카메라 자동 감지 결제 시스템 — 한국에 없는 무인 리테일 체험" },
     ],
-    order: 7,
+    order: 8,
   },
   {
     id: "day2-quanjude",
@@ -217,7 +233,7 @@ export const venues: Venue[] = [
       { name: { ko: "북경오리", zh: "北京烤鸭" }, priceCNY: 0, recommended: true },
     ],
     tips: [{ type: "must_know", content: "IBT 공식 저녁 - 중국 대표 전통 북경오리 레스토랑" }],
-    order: 8,
+    order: 9,
   },
 
   // ===== Day 3 (8개) - IBT Day 3: Refresh (자유 일정) =====

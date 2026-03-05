@@ -5,29 +5,23 @@ import { getVenuesByDay } from "./venues";
 export const dayRoutes: DayRoute[] = [
   {
     dayNumber: 1,
-    title: "Day 1 - 프랑스 조계지 & 와이탄",
+    title: "Day 1 - Inspiration (AI 기업 탐방)",
     description:
-      "광동식 딤섬으로 시작해 임시정부, 우캉루 산책 후 와이탄 야경까지",
+      "지다오 점심 → 바이두 Apollo Park · 딥블루 AI 기술 견학 → 왕츠핀취이 저녁",
     venues: getVenuesByDay(1),
-    totalCNY: 450,
-    totalKRW: 90000,
   },
   {
     dayNumber: 2,
-    title: "Day 2 - 루자쭈이 & 황푸강",
+    title: "Day 2 - Networking (미션 데이)",
     description:
-      "샤오양 군만두 아침, 상하이타워 무료 전망대, 황푸강 페리 체험",
+      "허마셴성 AI 체험 → 우캉맨션 포토스팟 → 소싱 미션 → 전취덕 공식 저녁",
     venues: getVenuesByDay(2),
-    totalCNY: 508,
-    totalKRW: 101600,
   },
   {
     dayNumber: 3,
-    title: "Day 3 - 티엔즈팡 & 귀국",
-    description: "길거리 아침 식사, 티엔즈팡 기념품 쇼핑, 출국 전 여유",
+    title: "Day 3 - Refresh (자유 일정)",
+    description: "지엔빙 아침 → 카페 투어 → 티엔즈팡 기념품 쇼핑 → 출국",
     venues: getVenuesByDay(3),
-    totalCNY: 200,
-    totalKRW: 40000,
   },
 ];
 

@@ -60,7 +60,14 @@ export function LeafletMapContainer({
   const mapRef = useRef<HTMLDivElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const mapInstanceRef = useRef<any>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const markersRef = useRef<any[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const routeRef = useRef<any>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const userMarkerRef = useRef<any>(null);
 
+  // 지도 초기화 (최초 1회)
   useEffect(() => {
     if (!mapRef.current || mapInstanceRef.current) return;
 
@@ -76,7 +83,6 @@ export function LeafletMapContainer({
     import("leaflet").then((L) => {
       if (!mapRef.current || mapInstanceRef.current) return;
 
-      // 중심 좌표 변환
       const center = gcj02ToWgs84(MAP_DEFAULT_CENTER.lng, MAP_DEFAULT_CENTER.lat);
 
       const map = L.map(mapRef.current, {
@@ -91,8 +97,35 @@ export function LeafletMapContainer({
       }).addTo(map);
 
       mapInstanceRef.current = map;
+    });
 
-      // 장소 마커
+    return () => {
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.remove();
+        mapInstanceRef.current = null;
+      }
+    };
+  }, []);
+
+  // 마커 및 경로 갱신 (venues / selectedVenueId 변경 시)
+  useEffect(() => {
+    if (!mapInstanceRef.current) return;
+
+    import("leaflet").then((L) => {
+      const map = mapInstanceRef.current;
+      if (!map) return;
+
+      // 기존 마커 제거
+      markersRef.current.forEach((m) => m.remove());
+      markersRef.current = [];
+
+      // 기존 경로 제거
+      if (routeRef.current) {
+        routeRef.current.remove();
+        routeRef.current = null;
+      }
+
+      // 장소 마커 추가
       venues.forEach((venue) => {
         const isSelected = venue.id === selectedVenueId;
         const wgs = gcj02ToWgs84(venue.coordinates.lng, venue.coordinates.lat);
@@ -116,15 +149,16 @@ export function LeafletMapContainer({
         marker.bindTooltip(venue.name.ko, { permanent: false, direction: "top" });
         marker.on("click", () => onVenueSelect?.(venue));
         marker.addTo(map);
+        markersRef.current.push(marker);
       });
 
-      // 경로 폴리라인
+      // 경로 폴리라인 추가
       if (showRoute && venues.length >= 2) {
         const points = venues.map((v) => {
           const wgs = gcj02ToWgs84(v.coordinates.lng, v.coordinates.lat);
           return [wgs.lat, wgs.lng] as [number, number];
         });
-        L.polyline(points, {
+        routeRef.current = L.polyline(points, {
           color: "#3B82F6",
           weight: 3,
           opacity: 0.7,
@@ -132,8 +166,32 @@ export function LeafletMapContainer({
         }).addTo(map);
       }
 
-      // 사용자 위치
-      if (showUserLocation && userLocation) {
+      // 선택된 장소로 이동
+      if (selectedVenueId) {
+        const selected = venues.find((v) => v.id === selectedVenueId);
+        if (selected) {
+          const wgs = gcj02ToWgs84(selected.coordinates.lng, selected.coordinates.lat);
+          map.setView([wgs.lat, wgs.lng], 16, { animate: true });
+        }
+      }
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [venues, selectedVenueId]);
+
+  // 사용자 위치 마커 갱신
+  useEffect(() => {
+    if (!mapInstanceRef.current || !showUserLocation) return;
+
+    import("leaflet").then((L) => {
+      const map = mapInstanceRef.current;
+      if (!map) return;
+
+      if (userMarkerRef.current) {
+        userMarkerRef.current.remove();
+        userMarkerRef.current = null;
+      }
+
+      if (userLocation) {
         const userWgs = gcj02ToWgs84(userLocation.lng, userLocation.lat);
         const userIcon = L.divIcon({
           html: `<div style="
@@ -146,39 +204,11 @@ export function LeafletMapContainer({
           iconSize: [16, 16],
           iconAnchor: [8, 8],
         });
-        L.marker([userWgs.lat, userWgs.lng], { icon: userIcon, title: "내 위치" }).addTo(map);
-      }
-
-      // 선택된 장소로 이동
-      if (selectedVenueId) {
-        const selected = venues.find((v) => v.id === selectedVenueId);
-        if (selected) {
-          const wgs = gcj02ToWgs84(selected.coordinates.lng, selected.coordinates.lat);
-          map.setView([wgs.lat, wgs.lng], 16);
-        }
+        userMarkerRef.current = L.marker([userWgs.lat, userWgs.lng], { icon: userIcon, title: "내 위치" }).addTo(map);
       }
     });
-
-    return () => {
-      if (mapInstanceRef.current) {
-        mapInstanceRef.current.remove();
-        mapInstanceRef.current = null;
-      }
-    };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // 선택 변경 시 지도 이동
-  useEffect(() => {
-    if (!mapInstanceRef.current || !selectedVenueId) return;
-    import("leaflet").then(() => {
-      const selected = venues.find((v) => v.id === selectedVenueId);
-      if (selected) {
-        const wgs = gcj02ToWgs84(selected.coordinates.lng, selected.coordinates.lat);
-        mapInstanceRef.current.setView([wgs.lat, wgs.lng], 16, { animate: true });
-      }
-    });
-  }, [selectedVenueId, venues]);
+  }, [userLocation, showUserLocation]);
 
   return (
     <div className="relative w-full h-full min-h-72 rounded-xl overflow-hidden">

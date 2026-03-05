@@ -62,6 +62,15 @@ export interface ReservationInfo {
   required: boolean;
 }
 
+// 미션 정보 (2일차 IBT 미션 데이)
+export interface MissionInfo {
+  type: "ai_tech" | "sourcing" | "photo";
+  description: string;
+  missionNumber?: 1 | 2;
+  photoSpotTips?: string;
+  sourcingHighlight?: string;
+}
+
 // 장소 (Venue) 인터페이스
 export interface Venue {
   id: string;
@@ -76,5 +85,6 @@ export interface Venue {
   tips?: Tip[];
   reservationInfo?: ReservationInfo;
   bestTimeToVisit?: string;
+  missionInfo?: MissionInfo;
   order?: number;
 }

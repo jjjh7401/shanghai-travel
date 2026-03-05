@@ -55,3 +55,14 @@ export const MAP_DEFAULT_CENTER = {
 
 // 지도 기본 줌 레벨
 export const MAP_DEFAULT_ZOOM = 13;
+
+// IBT 숙소 정보
+export const ACCOMMODATION = {
+  name: "하얏트 온 더 번드",
+  nameZh: "上海外滩茂悦大酒店",
+  nameEn: "Hyatt on the Bund, Shanghai",
+  address: "199 Huangpu Rd, Hongkou District, Shanghai",
+  coordinates: { lat: 31.2471, lng: 121.4858 },
+  checkIn: "Day 1 도착 후",
+  checkOut: "Day 4 출발 전",
+} as const;

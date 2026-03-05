@@ -47,6 +47,50 @@ export function VenueDetail({ venue }: VenueDetailProps) {
         )}
       </div>
 
+      {/* 미션 정보 (2일차 IBT 미션) */}
+      {venue.missionInfo && (
+        <div className={`rounded-xl p-4 shadow-sm border-l-4 ${
+          venue.missionInfo.type === "ai_tech"
+            ? "bg-blue-50 border-blue-500"
+            : venue.missionInfo.type === "sourcing"
+            ? "bg-green-50 border-green-500"
+            : "bg-purple-50 border-purple-500"
+        }`}>
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-lg">
+              {venue.missionInfo.type === "ai_tech" ? "🤖" : venue.missionInfo.type === "sourcing" ? "🛍️" : "📸"}
+            </span>
+            <h2 className="font-semibold text-gray-900">
+              {venue.missionInfo.missionNumber
+                ? `IBT 미션 ${venue.missionInfo.missionNumber}`
+                : "IBT 미션"}
+              <span className={`ml-2 text-xs px-2 py-0.5 rounded-full ${
+                venue.missionInfo.type === "ai_tech"
+                  ? "bg-blue-100 text-blue-700"
+                  : venue.missionInfo.type === "sourcing"
+                  ? "bg-green-100 text-green-700"
+                  : "bg-purple-100 text-purple-700"
+              }`}>
+                {venue.missionInfo.type === "ai_tech" ? "AI 기술 체험" : venue.missionInfo.type === "sourcing" ? "소싱 탐색" : "포토스팟"}
+              </span>
+            </h2>
+          </div>
+          <p className="text-sm text-gray-700 mb-2">{venue.missionInfo.description}</p>
+          {venue.missionInfo.photoSpotTips && (
+            <div className="flex items-start gap-2 text-sm text-gray-600 mt-2">
+              <span className="flex-shrink-0">📍</span>
+              <span>{venue.missionInfo.photoSpotTips}</span>
+            </div>
+          )}
+          {venue.missionInfo.sourcingHighlight && (
+            <div className="flex items-start gap-2 text-sm text-gray-600 mt-2">
+              <span className="flex-shrink-0">✨</span>
+              <span>{venue.missionInfo.sourcingHighlight}</span>
+            </div>
+          )}
+        </div>
+      )}
+
       {/* 경고 */}
       {venue.warnings && venue.warnings.length > 0 && (
         <div className="space-y-2">

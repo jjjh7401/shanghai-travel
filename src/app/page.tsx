@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getVenuesByDay } from "@/data/venues";
 import { dayRoutes } from "@/data/routes";
 import { NightviewSection } from "@/components/home/NightviewSection";
+import { ACCOMMODATION } from "@/data/constants";
 
 /**
  * 홈 페이지 - 여행 개요 및 빠른 접근
@@ -18,6 +19,18 @@ export default function HomePage() {
 
       {/* 야경 명소 (클라이언트: 18:00 이후 상단 배치) */}
       <NightviewSection />
+
+      {/* 숙소 정보 */}
+      <section className="bg-amber-50 rounded-xl p-4 border border-amber-200">
+        <div className="flex items-center gap-2 mb-2">
+          <span className="text-xl">🏨</span>
+          <h2 className="text-base font-semibold text-amber-900">IBT 공식 숙소</h2>
+        </div>
+        <p className="text-sm font-medium text-gray-900">{ACCOMMODATION.name}</p>
+        <p className="text-xs text-gray-500">{ACCOMMODATION.nameZh}</p>
+        <p className="text-xs text-gray-500 mt-1">{ACCOMMODATION.address}</p>
+        <p className="text-xs text-amber-700 mt-1">체크인: {ACCOMMODATION.checkIn} · 체크아웃: {ACCOMMODATION.checkOut}</p>
+      </section>
 
       {/* 날짜별 요약 카드 */}
       <section>

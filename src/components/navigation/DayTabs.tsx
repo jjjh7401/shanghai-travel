@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useFilterStore } from "@/store/useFilterStore";
 
 const DAY_LABELS = {
@@ -22,10 +23,12 @@ interface DayTabsProps {
  * 날짜 탭 컴포넌트
  */
 export function DayTabs({ onDayChange }: DayTabsProps) {
+  const router = useRouter();
   const { selectedDay, setSelectedDay } = useFilterStore();
 
   const handleDayClick = (day: 1 | 2 | 3) => {
     setSelectedDay(day);
+    router.push(`/day/${day}`);
     onDayChange?.(day);
   };
 

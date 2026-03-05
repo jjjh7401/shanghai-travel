@@ -69,7 +69,8 @@ export function generateDeepLink(
         options?.lng !== undefined &&
         options?.name
       ) {
-        return generateAmapDeepLink(options.lat, options.lng, options.name);
+        // iOS/Android 범용 웹 URL (앱 설치 시 앱 실행, 미설치 시 웹 표시)
+        return `https://uri.amap.com/marker?position=${options.lng},${options.lat}&name=${encodeURIComponent(options.name)}&src=shanghai-travel&coordinate=gaode`;
       }
       return null;
     default:

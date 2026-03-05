@@ -32,7 +32,11 @@ export function DeepLinkButton({
       name: venueName,
     });
     if (url) {
-      window.location.href = url;
+      if (url.startsWith("https://")) {
+        window.open(url, "_blank", "noopener,noreferrer");
+      } else {
+        window.location.href = url;
+      }
     }
   };
 

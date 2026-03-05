@@ -24,7 +24,7 @@ export const venues: Venue[] = [
     name: { ko: "바이두 아폴로파크", zh: "百度Apollo Park" },
     category: "attraction",
     dayNumber: 1,
-    coordinates: { lat: 31.2189, lng: 121.5350 },
+    coordinates: { lat: 31.3890, lng: 121.1980 },
     description: "IBT 공식 방문지 (13:30~15:00) — 바이두의 자율주행·AI 기술 체험 공간. Apollo RT6 자율주행차, Apolong 미니버스 탑승 체험 및 AI 쇼룸 견학",
     tips: [
       { type: "must_know", content: "중국 최대 AI 기업 바이두의 자율주행 플랫폼 Apollo 체험" },
@@ -37,7 +37,7 @@ export const venues: Venue[] = [
     name: { ko: "딥블루 테크놀로지", zh: "深蓝科技 DeepBlue Technology" },
     category: "attraction",
     dayNumber: 1,
-    coordinates: { lat: 31.2241, lng: 121.5014 },
+    coordinates: { lat: 31.2043, lng: 121.5943 },
     description: "IBT 공식 방문지 (15:30~17:00) — 2014년 설립된 AI 전문 기업. 스마트 스포츠·헬스케어·모빌리티·로봇 분야 AI 솔루션 보유. AI 바리스타, AI 피부 진단 등 체험 가능",
     tips: [
       { type: "must_know", content: "AI 기반 고객 서비스 솔루션 전문 기업 — GS SHOP 벤치마킹 대상" },
@@ -50,7 +50,7 @@ export const venues: Venue[] = [
     name: { ko: "왕츠핀취이", zh: "旺池品萃·融合菜" },
     category: "restaurant",
     dayNumber: 1,
-    coordinates: { lat: 31.2256, lng: 121.4748 },
+    coordinates: { lat: 31.2337, lng: 121.4757 },
     description: "IBT 공식 저녁 식사 장소 (18:00~) — 新世界百货店 입점 전통 사천요리 레스토랑",
     menuItems: [
       { name: { ko: "고추 흑돼지볶음", zh: "辣椒黑猪肉" }, priceCNY: 0, recommended: true },
@@ -65,7 +65,7 @@ export const venues: Venue[] = [
     name: { ko: "하얏트 온 더 번드 복귀", zh: "上海外滩茂悦大酒店" },
     category: "transport",
     dayNumber: 1,
-    coordinates: { lat: 31.2471, lng: 121.4858 },
+    coordinates: { lat: 31.2490, lng: 121.4965 },
     description: "저녁 식사 후 IBT 공식 숙소로 복귀",
     tips: [{ type: "must_know", content: "199 Huangpu Rd, Hongkou District — 택시 또는 지하철 이용" }],
     order: 5,
@@ -78,7 +78,7 @@ export const venues: Venue[] = [
     name: { ko: "허마셴성", zh: "盒马鲜生" },
     category: "shopping",
     dayNumber: 2,
-    coordinates: { lat: 31.2245, lng: 121.5063 },
+    coordinates: { lat: 31.2234, lng: 121.4237 },
     description: "알리바바 운영 스마트 슈퍼마켓 — 미션 1 AI 기술 인증샷 필수 방문지",
     missionInfo: {
       type: "ai_tech",
@@ -98,7 +98,7 @@ export const venues: Venue[] = [
     name: { ko: "콜롬비아 서클", zh: "上生新所 Columbia Circle" },
     category: "attraction",
     dayNumber: 2,
-    coordinates: { lat: 31.2251, lng: 121.4363 },
+    coordinates: { lat: 31.2181, lng: 121.4132 },
     description: "1920년대 미국 컨트리클럽을 리뉴얼한 복합문화공간 — 미션 2 개인 포토스팟",
     missionInfo: {
       type: "photo",
@@ -117,7 +117,7 @@ export const venues: Venue[] = [
     name: { ko: "월항조루", zh: "粤港潮楼" },
     category: "restaurant",
     dayNumber: 2,
-    coordinates: { lat: 31.2320, lng: 121.4723 },
+    coordinates: { lat: 31.2400, lng: 121.4870 },
     description: "IBT 공식 점심 식사 장소 — 광동요리 전문 레스토랑",
     menuItems: [
       { name: { ko: "광동식 오리구이", zh: "广式烤鸭" }, priceCNY: 0, recommended: true },
@@ -132,7 +132,7 @@ export const venues: Venue[] = [
     name: { ko: "HARMAY 화梅", zh: "话梅 HARMAY" },
     category: "shopping",
     dayNumber: 2,
-    coordinates: { lat: 31.2103, lng: 121.4497 },
+    coordinates: { lat: 31.2008, lng: 121.4526 },
     description: "안푸루 소재 창고형 뷰티 편집숍 — 미션 2 소싱 및 포토스팟",
     missionInfo: {
       type: "sourcing",
@@ -152,7 +152,7 @@ export const venues: Venue[] = [
     name: { ko: "우캉맨션", zh: "武康大楼" },
     category: "attraction",
     dayNumber: 2,
-    coordinates: { lat: 31.2097, lng: 121.4474 },
+    coordinates: { lat: 31.2044, lng: 121.4383 },
     description: "1924년 건축된 상하이 상징 삼각형 빌딩 — 미션 2 포토스팟 ⭐⭐⭐⭐⭐",
     missionInfo: {
       type: "photo",
@@ -168,7 +168,7 @@ export const venues: Venue[] = [
     name: { ko: "신천지 스쿠먼 골목", zh: "新天地石库门" },
     category: "attraction",
     dayNumber: 2,
-    coordinates: { lat: 31.2194, lng: 121.4741 },
+    coordinates: { lat: 31.2226, lng: 121.4701 },
     description: "중국 전통 주택 양식과 서양 건축이 결합된 독특한 골목 — 스쿠먼 골목 사진 + 팝마트 방문",
     missionInfo: {
       type: "photo",
@@ -227,7 +227,7 @@ export const venues: Venue[] = [
     name: { ko: "전취덕", zh: "全聚德" },
     category: "restaurant",
     dayNumber: 2,
-    coordinates: { lat: 31.2196, lng: 121.4853 },
+    coordinates: { lat: 31.2197, lng: 121.4643 },
     description: "IBT 공식 저녁 식사 장소 — 북경오리 전문 레스토랑",
     menuItems: [
       { name: { ko: "북경오리", zh: "北京烤鸭" }, priceCNY: 0, recommended: true },
@@ -284,7 +284,7 @@ export const venues: Venue[] = [
     name: { ko: "티엔즈팡", zh: "田子坊" },
     category: "shopping",
     dayNumber: 3,
-    coordinates: { lat: 31.2127, lng: 121.4589 },
+    coordinates: { lat: 31.2150, lng: 121.4675 },
     description: "기념품 쇼핑 명소",
     order: 5,
   },
@@ -326,7 +326,7 @@ export const venues: Venue[] = [
     name: { ko: "타이쿠리 첸탄", zh: "太古里前滩 Taikoo Li Qiantan" },
     category: "shopping",
     dayNumber: 3,
-    coordinates: { lat: 31.2176, lng: 121.5265 },
+    coordinates: { lat: 31.1888, lng: 121.5140 },
     description: "화화화 플라자 — 자유 일정 추천 쇼핑몰 (IBT 가이드 추천)",
     tips: [
       { type: "recommendation", content: "신흥 쇼핑 복합 단지 — 뷰티, 패션, F&B 다양하게 구성" },

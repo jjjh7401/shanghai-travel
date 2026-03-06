@@ -33,12 +33,15 @@ const LeafletMapContainer = dynamic(
  * 지도 페이지 - Amap 지도 + 일차/카테고리 필터 + 위치기반 경로
  */
 export default function MapPage() {
-  const { selectedDay, selectedCategories } = useFilterStore();
+  const { selectedDay, selectedCategories, showFoodOnly } = useFilterStore();
   const [selectedVenue, setSelectedVenue] = useState<Venue | null>(null);
   const { latitude, longitude, error: geoError } = useGeolocation();
 
-  // 필터 적용: 전체(0) 또는 선택 날짜 + 카테고리 필터
+  // 필터 적용: 맛집 탭이면 restaurant/cafe만, 아니면 날짜+카테고리 필터
   const filteredVenues = venues.filter((v) => {
+    if (showFoodOnly) {
+      return v.category === "restaurant" || v.category === "cafe";
+    }
     if (selectedDay !== 0 && v.dayNumber !== selectedDay) return false;
     if (selectedCategories.length > 0 && !selectedCategories.includes(v.category)) return false;
     return true;
@@ -123,7 +126,7 @@ export default function MapPage() {
       {/* 장소 목록 */}
       <div className="flex-1 px-3 py-3 space-y-2">
         <p className="text-xs text-gray-400 px-1">
-          {selectedDay === 0 ? "전체" : `Day ${selectedDay}`} · {filteredVenues.length}개 장소
+          {showFoodOnly ? "맛집 전체" : selectedDay === 0 ? "전체" : `Day ${selectedDay}`} · {filteredVenues.length}개 장소
         </p>
         {filteredVenues.length === 0 ? (
           <p className="text-center text-gray-400 py-8 text-sm">

@@ -1,5 +1,5 @@
 // 상하이 여행 가이드 - Service Worker
-const CACHE_NAME = 'shanghai-travel-v1';
+const CACHE_NAME = 'shanghai-travel-v2';
 const STATIC_ASSETS = [
   '/',
   '/map/',
@@ -34,9 +34,9 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// 패치: 캐시 우선 전략
+// 패치: HTML은 Network-First, 정적 에셋은 Cache-First
 self.addEventListener('fetch', (event) => {
-  // Amap API 요청은 캐시 안함
+  // 외부 API 요청은 캐시 안함
   if (event.request.url.includes('amap.com') || event.request.url.includes('gdal.com')) {
     return;
   }
@@ -44,6 +44,23 @@ self.addEventListener('fetch', (event) => {
   // GET 요청만 처리
   if (event.request.method !== 'GET') return;
 
+  // HTML(페이지 이동) 요청: Network-First - 항상 최신 버전 우선
+  if (event.request.destination === 'document' || event.request.mode === 'navigate') {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          if (response && response.status === 200) {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+          }
+          return response;
+        })
+        .catch(() => caches.match(event.request).then((cached) => cached || caches.match('/')))
+    );
+    return;
+  }
+
+  // 정적 에셋(JS/CSS/이미지): Cache-First - 콘텐츠 해시로 자동 버전 관리
   event.respondWith(
     caches.match(event.request).then((cached) => {
       if (cached) return cached;
@@ -57,12 +74,7 @@ self.addEventListener('fetch', (event) => {
           caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
           return response;
         })
-        .catch(() => {
-          // 오프라인: 기본 페이지 반환
-          if (event.request.destination === 'document') {
-            return caches.match('/');
-          }
-        });
+        .catch(() => undefined);
     })
   );
 });

@@ -9,6 +9,7 @@ interface DeepLinkButtonProps {
   lat?: number;
   lng?: number;
   venueName?: string;
+  venueAddress?: string;
   className?: string;
 }
 
@@ -22,6 +23,7 @@ export function DeepLinkButton({
   lat,
   lng,
   venueName,
+  venueAddress,
   className = "",
 }: DeepLinkButtonProps) {
   const handleClick = () => {
@@ -30,6 +32,7 @@ export function DeepLinkButton({
       lat,
       lng,
       name: venueName,
+      address: venueAddress,
     });
     if (url) {
       if (url.startsWith("https://")) {

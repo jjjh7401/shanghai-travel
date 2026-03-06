@@ -182,7 +182,8 @@ export function VenueDetail({ venue }: VenueDetailProps) {
           label="Amap으로 길 찾기"
           lat={venue.coordinates.lat}
           lng={venue.coordinates.lng}
-          venueName={venue.name.ko}
+          venueName={venue.name.zh ?? venue.name.ko}
+          venueAddress={venue.address?.zh}
           className="w-full justify-center"
         />
       </div>

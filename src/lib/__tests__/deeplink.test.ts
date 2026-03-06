@@ -33,10 +33,29 @@ describe("deeplink utility", () => {
   });
 
   describe("generateAmapDeepLink", () => {
-    it("Amap 네비게이션 딥링크를 생성한다", () => {
-      const url = generateAmapDeepLink(31.2244, 121.4822, "점도덕");
+    it("Amap 마커 딥링크를 생성한다", () => {
+      const url = generateAmapDeepLink(31.2244, 121.4822, "全聚德");
       expect(url).toContain("31.2244");
       expect(url).toContain("121.4822");
+      expect(url).toContain("uri.amap.com/marker");
+      expect(url).toContain("coordinate=gaode");
+      expect(url).toContain("callnative=1");
+    });
+
+    it("주소가 있으면 address 파라미터를 포함한다", () => {
+      const url = generateAmapDeepLink(
+        31.2200,
+        121.4648,
+        "全聚德",
+        "上海市黄浦区淮海中路780号 栗时代大厦 4F"
+      );
+      expect(url).toContain("address=");
+      expect(url).toContain(encodeURIComponent("上海市黄浦区淮海中路780号 栗时代大厦 4F"));
+    });
+
+    it("주소가 없으면 address 파라미터를 생략한다", () => {
+      const url = generateAmapDeepLink(31.2244, 121.4822, "全聚德");
+      expect(url).not.toContain("address=");
     });
 
     it("유효하지 않은 좌표에 대해 null을 반환한다", () => {

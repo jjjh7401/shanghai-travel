@@ -29,23 +29,27 @@ export function generateDianpingDeepLink(searchQuery?: string): string {
 }
 
 /**
- * Amap(高德地图) 네비게이션 딥링크를 생성한다
+ * Amap(高德地图) 마커 딥링크를 생성한다
  * @param lat - 위도 (GCJ-02)
  * @param lng - 경도 (GCJ-02)
  * @param name - 장소명
+ * @param address - 중국어 전체 주소 (건물·층수 포함, 선택사항)
  * @returns Amap 딥링크 URL 또는 null (유효하지 않은 좌표)
  */
 export function generateAmapDeepLink(
   lat: number,
   lng: number,
-  name: string
+  name: string,
+  address?: string
 ): string | null {
   if (isNaN(lat) || isNaN(lng)) {
     return null;
   }
-  return `androidamap://viewMap?sourceApplication=shanghai-travel&poiname=${encodeURIComponent(
-    name
-  )}&lat=${lat}&lon=${lng}&dev=0`;
+  let url = `https://uri.amap.com/marker?position=${lng},${lat}&name=${encodeURIComponent(name)}&src=shanghai-travel&coordinate=gaode&callnative=1`;
+  if (address) {
+    url += `&address=${encodeURIComponent(address)}`;
+  }
+  return url;
 }
 
 /**
@@ -56,7 +60,13 @@ export function generateAmapDeepLink(
  */
 export function generateDeepLink(
   platform: string,
-  options?: { searchQuery?: string; lat?: number; lng?: number; name?: string }
+  options?: {
+    searchQuery?: string;
+    lat?: number;
+    lng?: number;
+    name?: string;
+    address?: string;
+  }
 ): string | null {
   switch (platform) {
     case "wechat":
@@ -69,8 +79,12 @@ export function generateDeepLink(
         options?.lng !== undefined &&
         options?.name
       ) {
-        // iOS/Android 범용 웹 URL (앱 설치 시 앱 실행, 미설치 시 웹 표시)
-        return `https://uri.amap.com/marker?position=${options.lng},${options.lat}&name=${encodeURIComponent(options.name)}&src=shanghai-travel&coordinate=gaode`;
+        return generateAmapDeepLink(
+          options.lat,
+          options.lng,
+          options.name,
+          options.address
+        );
       }
       return null;
     default:

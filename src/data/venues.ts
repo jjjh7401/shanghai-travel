@@ -24,7 +24,7 @@ export const venues: Venue[] = [
     name: { ko: "바이두 아폴로파크", zh: "百度Apollo Park" },
     category: "attraction",
     dayNumber: 1,
-    coordinates: { lat: 31.2958, lng: 121.1850 },
+    coordinates: { lat: 31.2885, lng: 121.1627 },
     address: {
       ko: "자딩구 안팅진 안즈루 113호",
       zh: "上海市嘉定区安亭镇安智路113号",
@@ -41,7 +41,7 @@ export const venues: Venue[] = [
     name: { ko: "딥블루 테크놀로지", zh: "深蓝科技 DeepBlue Technology" },
     category: "attraction",
     dayNumber: 1,
-    coordinates: { lat: 31.1975, lng: 121.4005 },
+    coordinates: { lat: 31.2149, lng: 121.3873 },
     address: {
       ko: "창닝구 웨이닝루 369호",
       zh: "上海市长宁区威宁路369号",
@@ -58,7 +58,7 @@ export const venues: Venue[] = [
     name: { ko: "왕츠핀취이", zh: "旺池品萃·融合菜" },
     category: "restaurant",
     dayNumber: 1,
-    coordinates: { lat: 31.2344, lng: 121.4758 },
+    coordinates: { lat: 31.2351, lng: 121.4736 },
     address: {
       ko: "황포구 난징서루 2-68호 신세계성 8층 C03",
       zh: "上海市黄浦区南京西路2-68号 新世界城 8F C03",
@@ -77,7 +77,7 @@ export const venues: Venue[] = [
     name: { ko: "하얏트 온 더 번드 복귀", zh: "上海外滩茂悦大酒店" },
     category: "transport",
     dayNumber: 1,
-    coordinates: { lat: 31.2500, lng: 121.4955 },
+    coordinates: { lat: 31.2453, lng: 121.4929 },
     address: {
       ko: "홍커우구 황푸루 199호 (Hyatt on the Bund)",
       zh: "上海市虹口区黄浦路199号",
@@ -94,7 +94,7 @@ export const venues: Venue[] = [
     name: { ko: "허마셴성 KING88", zh: "盒马鲜生 KING88" },
     category: "shopping",
     dayNumber: 2,
-    coordinates: { lat: 31.2228, lng: 121.4240 },
+    coordinates: { lat: 31.2212, lng: 121.4239 },
     address: {
       ko: "창닝구 창닝루 88호 KING88몰 B1층",
       zh: "上海市长宁区长宁路88号 KING88商业广场 B1层",
@@ -118,7 +118,7 @@ export const venues: Venue[] = [
     name: { ko: "콜롬비아 서클", zh: "上生新所 Columbia Circle" },
     category: "attraction",
     dayNumber: 2,
-    coordinates: { lat: 31.2195, lng: 121.4125 },
+    coordinates: { lat: 31.2083, lng: 121.4281 },
     address: {
       ko: "창닝구 옌안서루 1262호",
       zh: "上海市长宁区延安西路1262号",
@@ -141,7 +141,7 @@ export const venues: Venue[] = [
     name: { ko: "월항조루", zh: "粤港潮楼" },
     category: "restaurant",
     dayNumber: 2,
-    coordinates: { lat: 31.2395, lng: 121.4778 },
+    coordinates: { lat: 31.2350, lng: 121.4801 },
     address: {
       ko: "황포구 구장루 600호 永安백화점 4-5층",
       zh: "上海市黄浦区九江路600号 永安百货 4F-5F",
@@ -160,7 +160,7 @@ export const venues: Venue[] = [
     name: { ko: "HARMAY 화梅", zh: "话梅 HARMAY" },
     category: "shopping",
     dayNumber: 2,
-    coordinates: { lat: 31.2178, lng: 121.4458 },
+    coordinates: { lat: 31.2134, lng: 121.4407 },
     address: {
       ko: "쉬후이구 안푸루 322호 2동 102호",
       zh: "上海市徐汇区安福路322号 2号楼 102室",
@@ -184,7 +184,7 @@ export const venues: Venue[] = [
     name: { ko: "우캉맨션", zh: "武康大楼" },
     category: "attraction",
     dayNumber: 2,
-    coordinates: { lat: 31.2142, lng: 121.4415 },
+    coordinates: { lat: 31.2044, lng: 121.4384 },
     address: {
       ko: "쉬후이구 우캉루 99호",
       zh: "上海市徐汇区武康路99号",
@@ -204,7 +204,7 @@ export const venues: Venue[] = [
     name: { ko: "신천지 스쿠먼 골목", zh: "新天地石库门" },
     category: "attraction",
     dayNumber: 2,
-    coordinates: { lat: 31.2210, lng: 121.4700 },
+    coordinates: { lat: 31.2200, lng: 121.4750 },
     address: {
       ko: "황포구 싱예루 123농",
       zh: "上海市黄浦区兴业路123弄",
@@ -267,7 +267,7 @@ export const venues: Venue[] = [
     name: { ko: "전취덕", zh: "全聚德" },
     category: "restaurant",
     dayNumber: 2,
-    coordinates: { lat: 31.2200, lng: 121.4648 },
+    coordinates: { lat: 31.2188, lng: 121.4632 },
     address: {
       ko: "황포구 화이하이중루 780호 리스다이빌딩 4층",
       zh: "上海市黄浦区淮海中路780号 栗时代大厦 4F",
@@ -328,7 +328,7 @@ export const venues: Venue[] = [
     name: { ko: "티엔즈팡", zh: "田子坊" },
     category: "shopping",
     dayNumber: 3,
-    coordinates: { lat: 31.2150, lng: 121.4678 },
+    coordinates: { lat: 31.2084, lng: 121.4687 },
     address: {
       ko: "황포구 타이캉루 210농",
       zh: "上海市黄浦区泰康路210弄",
@@ -374,7 +374,7 @@ export const venues: Venue[] = [
     name: { ko: "타이쿠리 첸탄", zh: "太古里前滩 Taikoo Li Qiantan" },
     category: "shopping",
     dayNumber: 3,
-    coordinates: { lat: 31.1888, lng: 121.5140 },
+    coordinates: { lat: 31.1530, lng: 121.4815 },
     address: {
       ko: "푸동신구 동위루 500호",
       zh: "上海市浦东新区东玉路500号",

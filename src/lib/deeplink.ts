@@ -29,9 +29,11 @@ export function generateDianpingDeepLink(searchQuery?: string): string {
 }
 
 /**
- * Amap(高德地图) 마커 딥링크를 생성한다
- * @param lat - 위도 (GCJ-02)
- * @param lng - 경도 (GCJ-02)
+ * Amap(高德地图) 위치 딥링크를 생성한다.
+ * 중국어 주소가 있으면 Amap 키워드 검색 URL을 사용해 Amap 자체 지오코딩으로 정확한 위치를 찾는다.
+ * 주소가 없으면 GCJ-02 좌표 기반 마커 URL로 폴백한다.
+ * @param lat - 위도 (GCJ-02, 폴백용)
+ * @param lng - 경도 (GCJ-02, 폴백용)
  * @param name - 장소명
  * @param address - 중국어 전체 주소 (건물·층수 포함, 선택사항)
  * @returns Amap 딥링크 URL 또는 null (유효하지 않은 좌표)
@@ -45,11 +47,12 @@ export function generateAmapDeepLink(
   if (isNaN(lat) || isNaN(lng)) {
     return null;
   }
-  let url = `https://uri.amap.com/marker?position=${lng},${lat}&name=${encodeURIComponent(name)}&src=shanghai-travel&coordinate=gaode&callnative=1`;
+  // 중국어 주소가 있으면 Amap 키워드 검색 사용 (Amap 자체 지오코딩 → 빌딩 수준 정확도)
   if (address) {
-    url += `&address=${encodeURIComponent(address)}`;
+    return `https://uri.amap.com/search?keyword=${encodeURIComponent(address)}&city=%E4%B8%8A%E6%B5%B7&src=shanghai-travel&callnative=1`;
   }
-  return url;
+  // 주소 없음 → 좌표 기반 마커로 폴백
+  return `https://uri.amap.com/marker?position=${lng},${lat}&name=${encodeURIComponent(name)}&src=shanghai-travel&coordinate=gaode&callnative=1`;
 }
 
 /**

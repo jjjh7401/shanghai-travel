@@ -33,32 +33,42 @@ describe("deeplink utility", () => {
   });
 
   describe("generateAmapDeepLink", () => {
-    it("Amap 마커 딥링크를 생성한다", () => {
+    it("주소가 없으면 좌표 기반 마커 URL을 반환한다", () => {
       const url = generateAmapDeepLink(31.2244, 121.4822, "全聚德");
-      expect(url).toContain("31.2244");
-      expect(url).toContain("121.4822");
       expect(url).toContain("uri.amap.com/marker");
+      expect(url).toContain("121.4822");
+      expect(url).toContain("31.2244");
       expect(url).toContain("coordinate=gaode");
       expect(url).toContain("callnative=1");
     });
 
-    it("주소가 있으면 address 파라미터를 포함한다", () => {
+    it("주소가 있으면 Amap 키워드 검색 URL을 반환한다 (Amap 지오코딩 사용)", () => {
       const url = generateAmapDeepLink(
         31.2200,
         121.4648,
         "全聚德",
         "上海市黄浦区淮海中路780号 栗时代大厦 4F"
       );
-      expect(url).toContain("address=");
+      expect(url).toContain("uri.amap.com/search");
+      expect(url).toContain("keyword=");
       expect(url).toContain(encodeURIComponent("上海市黄浦区淮海中路780号 栗时代大厦 4F"));
+      expect(url).toContain("callnative=1");
+      // 검색 URL에는 좌표가 포함되지 않아야 함
+      expect(url).not.toContain("position=");
     });
 
-    it("주소가 없으면 address 파라미터를 생략한다", () => {
-      const url = generateAmapDeepLink(31.2244, 121.4822, "全聚德");
-      expect(url).not.toContain("address=");
+    it("주소가 있을 때 좌표가 NaN이어도 검색 URL을 반환한다", () => {
+      const url = generateAmapDeepLink(
+        NaN,
+        NaN,
+        "全聚德",
+        "上海市黄浦区淮海中路780号 栗时代大厦 4F"
+      );
+      // 좌표가 NaN이어도 주소가 있으면 null 반환 (좌표 유효성 검사가 먼저)
+      expect(url).toBeNull();
     });
 
-    it("유효하지 않은 좌표에 대해 null을 반환한다", () => {
+    it("유효하지 않은 좌표에 주소도 없으면 null을 반환한다", () => {
       const url = generateAmapDeepLink(NaN, NaN, "test");
       expect(url).toBeNull();
     });

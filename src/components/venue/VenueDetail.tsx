@@ -39,6 +39,19 @@ export function VenueDetail({ venue }: VenueDetailProps) {
           <p className="mt-3 text-gray-600">{venue.description}</p>
         )}
 
+        {venue.address && (
+          <div className="mt-3 pt-3 border-t border-gray-100 space-y-1">
+            <div className="flex items-start gap-2 text-sm">
+              <span className="flex-shrink-0 text-gray-400">📍</span>
+              <span className="text-gray-700">{venue.address.ko}</span>
+            </div>
+            <div className="flex items-start gap-2 text-sm">
+              <span className="flex-shrink-0 text-gray-400">📍</span>
+              <span className="text-gray-500">{venue.address.zh}</span>
+            </div>
+          </div>
+        )}
+
         {venue.bestTimeToVisit && (
           <div className="mt-3 flex items-center gap-2 text-sm text-blue-600">
             <span>🕐</span>

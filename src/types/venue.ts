@@ -23,6 +23,12 @@ export interface BilingualName {
   zh?: string;
 }
 
+// 한국어/중국어 주소
+export interface Address {
+  ko: string;
+  zh: string;
+}
+
 // 좌표 (GCJ-02)
 export interface Coordinates {
   lat: number;
@@ -84,6 +90,7 @@ export interface Venue {
   warnings?: Warning[];
   tips?: Tip[];
   reservationInfo?: ReservationInfo;
+  address?: Address;
   bestTimeToVisit?: string;
   missionInfo?: MissionInfo;
   order?: number;

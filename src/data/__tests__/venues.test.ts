@@ -3,8 +3,8 @@ import { venues, getVenuesByDay, getVenueById } from "../venues";
 
 describe("venues data", () => {
   describe("데이터 완전성 검증", () => {
-    it("총 22개의 장소가 있다", () => {
-      expect(venues).toHaveLength(22);
+    it("총 30개의 장소가 있다", () => {
+      expect(venues).toHaveLength(30);
     });
 
     it("각 장소는 id를 가진다", () => {
@@ -59,10 +59,10 @@ describe("venues data", () => {
     });
   });
 
-  describe("Day 1 장소 (5개)", () => {
-    it("Day 1에 5개의 장소가 있다", () => {
+  describe("Day 1 장소 (7개)", () => {
+    it("Day 1에 7개의 장소가 있다", () => {
       const day1Venues = getVenuesByDay(1);
-      expect(day1Venues).toHaveLength(5);
+      expect(day1Venues).toHaveLength(7);
     });
 
     it("지다오 상하이차이가 Day 1 첫 번째 장소이다", () => {
@@ -90,10 +90,10 @@ describe("venues data", () => {
     });
   });
 
-  describe("Day 2 장소 (9개)", () => {
-    it("Day 2에 9개의 장소가 있다", () => {
+  describe("Day 2 장소 (14개)", () => {
+    it("Day 2에 14개의 장소가 있다", () => {
       const day2Venues = getVenuesByDay(2);
-      expect(day2Venues).toHaveLength(9);
+      expect(day2Venues).toHaveLength(14);
     });
 
     it("허마셴성이 Day 2 첫 번째 장소이다", () => {
@@ -137,10 +137,10 @@ describe("venues data", () => {
     });
   });
 
-  describe("Day 3 장소 (8개)", () => {
-    it("Day 3에 8개의 장소가 있다", () => {
+  describe("Day 3 장소 (9개)", () => {
+    it("Day 3에 9개의 장소가 있다", () => {
       const day3Venues = getVenuesByDay(3);
-      expect(day3Venues).toHaveLength(8);
+      expect(day3Venues).toHaveLength(9);
     });
 
     it("젤네일이 따종 앱 예약 정보를 가진다", () => {

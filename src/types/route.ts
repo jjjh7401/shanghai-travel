@@ -10,9 +10,3 @@ export interface DayRoute {
   totalKRW?: number;
 }
 
-// 전체 여행 경로
-export interface TravelRoute {
-  tripName: string;
-  destination: string;
-  days: DayRoute[];
-}

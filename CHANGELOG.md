@@ -4,6 +4,27 @@
 
 [유지 보수 중](https://keepachangelog.com/ko/1.0.0/) 형식을 따릅니다.
 
+## [0.3.1] - 2026-03-07
+
+### 제거됨
+
+#### Dead Code 정리 - 레거시 지도 컴포넌트 및 미사용 코드 (commit b157456)
+
+**삭제된 파일 (5개, -701줄)**
+- `AMapContainer.tsx` - LeafletMapContainer로 대체된 AMap 구현체
+- `BaiduMapContainer.tsx` - LeafletMapContainer로 대체된 Baidu 구현체
+- `useAMap.ts` - 미사용 AMap 훅
+- `lib/amap.ts` - deeplink.ts로 대체된 AMap URL 생성 유틸
+- `lib/wechat.ts` - deeplink.ts로 대체된 WeChat URL 생성 유틸
+
+**미사용 exports 정리 (-56줄)**
+- `constants.ts`: APP_NAME, APP_VERSION, ALIPAY_THRESHOLD_CNY, ALIPAY_FEE_PERCENTAGE, PROXIMITY_ALERT_DISTANCE_M, TRAVEL_DAYS, TravelDay, AMAP_SECURITY_JS_CODE
+- `route.ts`: TravelRoute 인터페이스
+- `tip.ts`: TipCategory, TransportOption
+
+**테스트 업데이트**
+- `venues.test.ts`: v0.3.0 맛집 데이터(8개) 추가 반영 (22→30, 5→7, 9→14, 8→9)
+
 ## [0.3.0] - 2026-03-06
 
 ### 추가됨

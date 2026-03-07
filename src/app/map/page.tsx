@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 import Link from "next/link";
 import { useFilterStore } from "@/store/useFilterStore";
+import { useScheduleStore } from "@/store/useScheduleStore";
 import { venues } from "@/data/venues";
 import { DayFilter } from "@/components/map/DayFilter";
 import { CategoryFilter } from "@/components/map/CategoryFilter";
@@ -34,18 +35,26 @@ const LeafletMapContainer = dynamic(
  */
 export default function MapPage() {
   const { selectedDay, selectedCategories, showFoodOnly } = useFilterStore();
+  const { schedules } = useScheduleStore();
   const [selectedVenue, setSelectedVenue] = useState<Venue | null>(null);
   const { latitude, longitude, error: geoError } = useGeolocation();
 
-  // 필터 적용: 맛집 탭이면 restaurant/cafe만, 아니면 날짜+카테고리 필터
-  const filteredVenues = venues.filter((v) => {
+  // 필터 적용: 맛집 탭이면 restaurant/cafe만, Day 선택 시 스케줄 기준, 전체면 카테고리 필터
+  const filteredVenues = (() => {
     if (showFoodOnly) {
-      return v.category === "restaurant" || v.category === "cafe";
+      return venues.filter((v) => v.category === "restaurant" || v.category === "cafe");
     }
-    if (selectedDay !== 0 && v.dayNumber !== selectedDay) return false;
-    if (selectedCategories.length > 0 && !selectedCategories.includes(v.category)) return false;
-    return true;
-  });
+    if (selectedDay !== 0) {
+      const dayIds = schedules[selectedDay as 1 | 2 | 3];
+      return dayIds
+        .map((id) => venues.find((v) => v.id === id))
+        .filter((v): v is Venue => v !== undefined);
+    }
+    return venues.filter((v) => {
+      if (selectedCategories.length > 0 && !selectedCategories.includes(v.category)) return false;
+      return true;
+    });
+  })();
 
   const userLocation =
     latitude && longitude ? { lat: latitude, lng: longitude } : null;

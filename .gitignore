@@ -210,3 +210,5 @@ dist-ssr/
 .netlify/
 .firebase/
 .vercel
+
+.vercel

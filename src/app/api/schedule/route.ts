@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getDb, ensureTable, type NeonDb } from "@/lib/db";
+import { getDb, ensureTable } from "@/lib/db";
 
 export async function GET(request: NextRequest) {
   const db = getDb();

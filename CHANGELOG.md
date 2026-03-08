@@ -4,6 +4,40 @@
 
 [유지 보수 중](https://keepachangelog.com/ko/1.0.0/) 형식을 따릅니다.
 
+## [0.3.2] - 2026-03-08
+
+### 추가됨
+
+#### IBT 4개 조 선택 시스템 (commit 77cc3b9)
+- 첫 실행 시 조 선택 팝업 (`GroupSelectModal`) 표시
+- 설정 페이지에서 조 변경 UI 추가
+- `groupSchedules.ts`: 조별 Day2 일정 정의 (1~4조 각 8개 장소, 순서 상이)
+
+#### 조별 일정 영구 저장 (commit 8ffea2f)
+- `useScheduleStore`: `activeGroup` + `groupScheduleMap` 상태 추가
+- 조 전환 후 복귀 시 변경된 일정 유지 (이전: 초기 기본값으로 리셋)
+- 모든 일정 변경 액션이 `groupScheduleMap[activeGroup]` 자동 동기화
+
+#### 최단경로 정렬 기능 (commit 8ffea2f)
+- `DayScheduleClient`에 "📍 최단경로" 버튼 추가
+- Nearest Neighbor 알고리즘 기반 최단 이동거리 순 재배열
+- Haversine 공식으로 GCJ-02 좌표 간 거리 계산
+- 장소 1개 이하일 때 버튼 비활성화
+
+#### 상하이 추가 명소 8개 (commit 4909461)
+- 성황묘, 1000 Trees, 와이탄, 블루보틀 커피, 츠타야 서점, 대한민국 임시정부, 두오원 서점, Rumors Coffee
+- 총 장소 수 30개 → 38개
+
+### 변경됨
+
+#### UI 개선 (commit fee734f)
+- Day 탭 서브타이틀 제거 (Day1/Day2/Day3 레이블만 표시)
+
+### 테스트
+- `useScheduleStore.test.ts`: 7개 테스트 추가 (조별 일정 영구 저장, 최단경로 정렬)
+- `venues.test.ts`: 장소 수 카운트 업데이트 (38개)
+- 총 108개 테스트 통과
+
 ## [0.3.1] - 2026-03-07
 
 ### 제거됨

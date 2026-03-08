@@ -15,7 +15,7 @@ interface DayScheduleClientProps {
 export function DayScheduleClient({ dayNumber, route }: DayScheduleClientProps) {
   const [mounted, setMounted] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const { schedules, removeVenueFromDay, moveVenueUp, moveVenueDown, resetToDefault } =
+  const { schedules, removeVenueFromDay, moveVenueUp, moveVenueDown, resetToDefault, reorderByDistance } =
     useScheduleStore();
 
   useEffect(() => {
@@ -118,6 +118,15 @@ export function DayScheduleClient({ dayNumber, route }: DayScheduleClientProps) 
         >
           <span className="text-base font-bold">+</span>
           장소 추가
+        </button>
+        <button
+          onClick={() => reorderByDistance(dayNumber)}
+          disabled={venues.length <= 1}
+          className="px-4 py-3 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-xl text-sm font-semibold transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+          aria-label="최단거리 순으로 정렬"
+          title="선택된 장소들을 최단 이동거리 순으로 재배열합니다"
+        >
+          📍 최단경로
         </button>
         <button
           onClick={handleReset}

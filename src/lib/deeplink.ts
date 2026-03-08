@@ -1,15 +1,9 @@
-// 지원되는 플랫폼 타입
-export type DeepLinkPlatform = "wechat" | "dianping" | "amap";
-
-// 지원 플랫폼 목록
-const SUPPORTED_PLATFORMS: DeepLinkPlatform[] = ["wechat", "dianping", "amap"];
-
 /**
  * WeChat 딥링크 URL을 생성한다
  * @param searchQuery - 검색어 (선택사항)
  * @returns WeChat 딥링크 URL
  */
-export function generateWeChatDeepLink(searchQuery?: string): string {
+function generateWeChatDeepLink(searchQuery?: string): string {
   if (searchQuery) {
     return `weixin://search?query=${searchQuery}`;
   }
@@ -21,7 +15,7 @@ export function generateWeChatDeepLink(searchQuery?: string): string {
  * @param searchQuery - 검색어 (선택사항)
  * @returns Dianping 딥링크 URL
  */
-export function generateDianpingDeepLink(searchQuery?: string): string {
+function generateDianpingDeepLink(searchQuery?: string): string {
   if (searchQuery) {
     return `dianping://search?keyword=${searchQuery}`;
   }
@@ -38,7 +32,7 @@ export function generateDianpingDeepLink(searchQuery?: string): string {
  * @param address - 중국어 전체 주소 (건물·층수 포함, 선택사항)
  * @returns Amap 딥링크 URL 또는 null (유효하지 않은 좌표)
  */
-export function generateAmapDeepLink(
+function generateAmapDeepLink(
   lat: number,
   lng: number,
   name: string,
@@ -95,11 +89,3 @@ export function generateDeepLink(
   }
 }
 
-/**
- * 플랫폼 딥링크 지원 여부를 확인한다
- * @param platform - 플랫폼 문자열
- * @returns 지원 여부
- */
-export function isDeepLinkSupported(platform: string): boolean {
-  return SUPPORTED_PLATFORMS.includes(platform as DeepLinkPlatform);
-}

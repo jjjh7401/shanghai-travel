@@ -64,7 +64,7 @@ export function useGeolocation(): GeolocationState {
 /**
  * 두 좌표 간 거리를 계산한다 (미터 단위, Haversine formula)
  */
-export function calculateDistance(
+function calculateDistance(
   lat1: number,
   lng1: number,
   lat2: number,

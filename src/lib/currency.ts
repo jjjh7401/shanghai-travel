@@ -21,24 +21,6 @@ export function convertCNYtoKRW(
 }
 
 /**
- * CNY 금액을 포맷한다
- * @param cny - 중국 위안 금액
- * @returns 포맷된 문자열 (예: "94 CNY")
- */
-export function formatCNY(cny: number): string {
-  return `${cny} CNY`;
-}
-
-/**
- * KRW 금액을 포맷한다
- * @param krw - 한국 원화 금액
- * @returns 포맷된 문자열 (예: "18,800 KRW")
- */
-export function formatKRW(krw: number): string {
-  return `${krw.toLocaleString("ko-KR")} KRW`;
-}
-
-/**
  * CNY와 KRW를 함께 포맷한다
  * @param cny - 중국 위안 금액
  * @param exchangeRate - 환율 (기본값: 200 KRW/CNY)
@@ -61,12 +43,3 @@ export function isOverAliPayThreshold(cny: number): boolean {
   return cny > ALIPAY_FEE_THRESHOLD;
 }
 
-/**
- * AliPay 수수료를 계산한다
- * @param cny - 중국 위안 금액
- * @returns 수수료 금액 (CNY)
- */
-export function calculateAliPayFee(cny: number): number {
-  if (!isOverAliPayThreshold(cny)) return 0;
-  return cny * ALIPAY_FEE_RATE;
-}

@@ -24,9 +24,6 @@ export const CATEGORY_ICONS = {
   nightview: "🌃",
 } as const;
 
-// Baidu Maps API 설정
-export const BAIDU_MAP_KEY = process.env.NEXT_PUBLIC_BAIDU_MAP_KEY || "";
-
 // 지도 기본 중심 (상하이)
 export const MAP_DEFAULT_CENTER = {
   lat: 31.2304,

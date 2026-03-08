@@ -1,8 +1,6 @@
 import { describe, it, expect } from "vitest";
 import {
   convertCNYtoKRW,
-  formatCNY,
-  formatKRW,
   formatDualCurrency,
   DEFAULT_EXCHANGE_RATE,
   isOverAliPayThreshold,
@@ -34,26 +32,6 @@ describe("currency utility", () => {
 
     it("소수점 CNY를 올바르게 변환한다", () => {
       expect(convertCNYtoKRW(2.5)).toBe(500);
-    });
-  });
-
-  describe("formatCNY", () => {
-    it("94를 '94 CNY'로 포맷한다", () => {
-      expect(formatCNY(94)).toBe("94 CNY");
-    });
-
-    it("0을 '0 CNY'로 포맷한다", () => {
-      expect(formatCNY(0)).toBe("0 CNY");
-    });
-  });
-
-  describe("formatKRW", () => {
-    it("18800을 '18,800 KRW'로 포맷한다", () => {
-      expect(formatKRW(18800)).toBe("18,800 KRW");
-    });
-
-    it("1000000을 '1,000,000 KRW'로 포맷한다", () => {
-      expect(formatKRW(1000000)).toBe("1,000,000 KRW");
     });
   });
 

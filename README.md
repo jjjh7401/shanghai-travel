@@ -83,6 +83,17 @@ npm run build
 npm start
 ```
 
+### 사용자 매뉴얼 PDF 생성
+
+```bash
+# Playwright 기반 스크린샷 캡처 + PDF 생성
+node scripts/generate-manual.mjs
+```
+
+개발 서버(`npm run dev`)가 실행 중인 상태에서 실행합니다. 생성된 파일:
+- `manual-output/상하이IBT여행가이드_사용매뉴얼.pdf` — 한국어 8섹션 매뉴얼
+- `manual-output/images/` — 13장 스크린샷 (390×844 모바일 뷰포트)
+
 ### 테스트
 
 ```bash

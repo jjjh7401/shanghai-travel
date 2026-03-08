@@ -5,21 +5,18 @@ import { DEFAULT_CNY_TO_KRW_RATE } from "@/data/constants";
 interface AppSettings {
   exchangeRate: number;
   showChineseNames: boolean;
-  notificationsEnabled: boolean;
 }
 
 interface AppState {
   settings: AppSettings;
   updateExchangeRate: (rate: number) => void;
   toggleChineseNames: () => void;
-  toggleNotifications: () => void;
   resetSettings: () => void;
 }
 
 const defaultSettings: AppSettings = {
   exchangeRate: DEFAULT_CNY_TO_KRW_RATE,
   showChineseNames: true,
-  notificationsEnabled: false,
 };
 
 export const useAppStore = create<AppState>()(
@@ -40,15 +37,6 @@ export const useAppStore = create<AppState>()(
           settings: {
             ...state.settings,
             showChineseNames: !state.settings.showChineseNames,
-          },
-        }));
-      },
-
-      toggleNotifications: () => {
-        set((state) => ({
-          settings: {
-            ...state.settings,
-            notificationsEnabled: !state.settings.notificationsEnabled,
           },
         }));
       },

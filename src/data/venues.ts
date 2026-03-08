@@ -687,17 +687,6 @@ export function getVenueById(id: string): Venue | undefined {
 }
 
 /**
- * 카테고리로 장소를 필터링한다
- * @param category - 카테고리
- * @returns 해당 카테고리의 장소 목록
- */
-export function getVenuesByCategory(
-  category: Venue["category"]
-): Venue[] {
-  return venues.filter((v) => v.category === category);
-}
-
-/**
  * 야경 명소 목록을 반환한다
  * @returns 야경 명소 목록
  */

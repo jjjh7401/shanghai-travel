@@ -8,14 +8,12 @@ type DayNumber = (typeof VALID_DAYS)[number];
 interface FilterState {
   selectedDay: DayNumber;
   selectedCategories: VenueCategory[];
-  showNightviewOnly: boolean;
   showFoodOnly: boolean;
 }
 
 interface FilterActions {
   setSelectedDay: (day: number) => void;
   toggleCategory: (category: VenueCategory) => void;
-  setShowNightviewOnly: (show: boolean) => void;
   setShowFoodOnly: (show: boolean) => void;
   resetFilters: () => void;
 }
@@ -23,7 +21,6 @@ interface FilterActions {
 const initialState: FilterState = {
   selectedDay: 0,
   selectedCategories: [],
-  showNightviewOnly: false,
   showFoodOnly: false,
 };
 
@@ -53,10 +50,6 @@ export const useFilterStore = create<FilterState & FilterActions>((set) => ({
         };
       }
     });
-  },
-
-  setShowNightviewOnly: (show: boolean) => {
-    set({ showNightviewOnly: show });
   },
 
   setShowFoodOnly: (show: boolean) => {

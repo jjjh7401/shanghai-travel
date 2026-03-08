@@ -19,9 +19,6 @@ describe("useFilterStore", () => {
       expect(useFilterStore.getState().selectedCategories).toEqual([]);
     });
 
-    it("showNightviewOnly는 false로 초기화된다", () => {
-      expect(useFilterStore.getState().showNightviewOnly).toBe(false);
-    });
   });
 
   describe("setSelectedDay", () => {
@@ -79,28 +76,17 @@ describe("useFilterStore", () => {
     });
   });
 
-  describe("setShowNightviewOnly", () => {
-    it("야경 전용 필터를 활성화한다", () => {
-      act(() => {
-        useFilterStore.getState().setShowNightviewOnly(true);
-      });
-      expect(useFilterStore.getState().showNightviewOnly).toBe(true);
-    });
-  });
-
   describe("resetFilters", () => {
     it("모든 필터를 초기 상태로 재설정한다", () => {
       act(() => {
         useFilterStore.getState().setSelectedDay(3);
         useFilterStore.getState().toggleCategory("restaurant");
-        useFilterStore.getState().setShowNightviewOnly(true);
         useFilterStore.getState().resetFilters();
       });
 
       const state = useFilterStore.getState();
       expect(state.selectedDay).toBe(0);
       expect(state.selectedCategories).toEqual([]);
-      expect(state.showNightviewOnly).toBe(false);
     });
   });
 

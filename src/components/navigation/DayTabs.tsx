@@ -9,12 +9,6 @@ const DAY_LABELS = {
   3: "Day 3",
 };
 
-const DAY_SUBTITLES = {
-  1: "프랑스 조계지 & 와이탄",
-  2: "루자쭈이 & 황푸강",
-  3: "티엔즈팡 & 귀국",
-};
-
 interface DayTabsProps {
   onDayChange?: (day: 1 | 2 | 3) => void;
 }
@@ -52,9 +46,6 @@ export function DayTabs({ onDayChange }: DayTabsProps) {
           }`}
         >
           <div className="text-sm font-medium">{DAY_LABELS[day]}</div>
-          <div className="text-xs text-gray-400 mt-0.5">
-            {DAY_SUBTITLES[day]}
-          </div>
         </button>
       ))}
     </div>

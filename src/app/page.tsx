@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getVenuesByDay } from "@/data/venues";
 import { dayRoutes } from "@/data/routes";
 import { NightviewSection } from "@/components/home/NightviewSection";
+import { GroupBadge } from "@/components/home/GroupBadge";
 import { ACCOMMODATION } from "@/data/constants";
 
 /**
@@ -15,6 +16,9 @@ export default function HomePage() {
       <header className="text-center">
         <h1 className="text-2xl font-bold text-gray-900">상하이 여행 가이드</h1>
         <p className="text-gray-500 mt-1 text-sm">上海旅行指南 · 2박 3일</p>
+        <div className="mt-2 flex justify-center">
+          <GroupBadge />
+        </div>
       </header>
 
       {/* 야경 명소 (클라이언트: 18:00 이후 상단 배치) */}

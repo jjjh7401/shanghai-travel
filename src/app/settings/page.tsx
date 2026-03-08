@@ -1,7 +1,25 @@
 "use client";
 
 import { useAppStore } from "@/store/useAppStore";
+import { useGroupStore } from "@/store/useGroupStore";
+import { useScheduleStore } from "@/store/useScheduleStore";
 import { DEFAULT_CNY_TO_KRW_RATE } from "@/data/constants";
+import { groupSchedules } from "@/data/groupSchedules";
+import type { GroupNumber } from "@/data/groupSchedules";
+
+const GROUP_COLORS: Record<GroupNumber, string> = {
+  1: "bg-blue-500",
+  2: "bg-green-500",
+  3: "bg-orange-500",
+  4: "bg-purple-500",
+};
+
+const GROUP_ACTIVE_BORDERS: Record<GroupNumber, string> = {
+  1: "border-blue-500 bg-blue-50",
+  2: "border-green-500 bg-green-50",
+  3: "border-orange-500 bg-orange-50",
+  4: "border-purple-500 bg-purple-50",
+};
 
 /**
  * 설정 페이지
@@ -9,6 +27,13 @@ import { DEFAULT_CNY_TO_KRW_RATE } from "@/data/constants";
 export default function SettingsPage() {
   const { settings, updateExchangeRate, toggleChineseNames, resetSettings } =
     useAppStore();
+  const { selectedGroup, setGroup, resetGroup } = useGroupStore();
+  const { initializeForGroup } = useScheduleStore();
+
+  const handleGroupChange = (group: GroupNumber) => {
+    setGroup(group);
+    initializeForGroup(group);
+  };
 
   const handleRateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const rate = parseFloat(e.target.value);
@@ -23,6 +48,59 @@ export default function SettingsPage() {
       <header>
         <h1 className="text-2xl font-bold text-gray-900">설정</h1>
       </header>
+
+      {/* 조 선택 */}
+      <section className="bg-white rounded-xl shadow-sm overflow-hidden">
+        <div className="px-4 py-3 bg-gray-50 border-b border-gray-100">
+          <h2 className="font-semibold text-gray-800">내 조 설정</h2>
+        </div>
+        <div className="p-4">
+          {selectedGroup ? (
+            <div className="mb-3 flex items-center gap-2">
+              <div
+                className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm ${GROUP_COLORS[selectedGroup]}`}
+              >
+                {selectedGroup}
+              </div>
+              <span className="font-medium text-gray-900">
+                현재 {selectedGroup}조 일정 보기 중
+              </span>
+            </div>
+          ) : (
+            <p className="text-sm text-gray-500 mb-3">조가 선택되지 않았습니다.</p>
+          )}
+          <div className="grid grid-cols-4 gap-2">
+            {groupSchedules.map((gs) => (
+              <button
+                key={gs.group}
+                onClick={() => handleGroupChange(gs.group)}
+                className={`flex flex-col items-center p-3 rounded-xl border-2 transition-all ${
+                  selectedGroup === gs.group
+                    ? GROUP_ACTIVE_BORDERS[gs.group]
+                    : "border-gray-200 bg-white"
+                }`}
+              >
+                <div
+                  className={`w-9 h-9 rounded-full flex items-center justify-center text-white font-bold ${GROUP_COLORS[gs.group]}`}
+                >
+                  {gs.group}
+                </div>
+                <span className="text-xs font-medium text-gray-700 mt-1">
+                  {gs.name}
+                </span>
+              </button>
+            ))}
+          </div>
+          {selectedGroup && (
+            <button
+              onClick={() => resetGroup()}
+              className="mt-3 text-xs text-gray-400 hover:text-gray-600"
+            >
+              조 선택 초기화
+            </button>
+          )}
+        </div>
+      </section>
 
       {/* 환율 설정 */}
       <section className="bg-white rounded-xl shadow-sm overflow-hidden">

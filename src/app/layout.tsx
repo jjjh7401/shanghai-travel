@@ -4,6 +4,7 @@ import { BottomNav } from "@/components/navigation/BottomNav";
 import { OfflineIndicator } from "@/components/common/OfflineIndicator";
 import { ProximityAlert } from "@/components/common/ProximityAlert";
 import { ServiceWorkerRegister } from "@/components/common/ServiceWorkerRegister";
+import { GroupSelectModal } from "@/components/common/GroupSelectModal";
 
 export const metadata: Metadata = {
   title: "상하이 여행 가이드",
@@ -34,6 +35,7 @@ export default function RootLayout({
       <body>
         <ServiceWorkerRegister />
         <OfflineIndicator />
+        <GroupSelectModal />
         <main className="min-h-screen pb-nav">{children}</main>
         <ProximityAlert />
         <BottomNav />

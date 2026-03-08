@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { venues as allVenues } from "@/data/venues";
+import { getGroupDayVenueIds } from "@/data/groupSchedules";
+import type { GroupNumber } from "@/data/groupSchedules";
 
 export type ScheduleDay = 1 | 2 | 3 | "food";
 
@@ -21,6 +23,7 @@ interface ScheduleActions {
   moveVenueUp: (venueId: string, day: ScheduleDay) => void;
   moveVenueDown: (venueId: string, day: ScheduleDay) => void;
   resetToDefault: () => void;
+  initializeForGroup: (group: GroupNumber) => void;
 }
 
 function buildDefaultSchedules(): ScheduleMap {
@@ -30,6 +33,15 @@ function buildDefaultSchedules(): ScheduleMap {
     map[v.dayNumber].push(v.id);
   }
   return map;
+}
+
+function buildGroupSchedules(group: GroupNumber): ScheduleMap {
+  return {
+    1: getGroupDayVenueIds(group, 1),
+    2: getGroupDayVenueIds(group, 2),
+    3: getGroupDayVenueIds(group, 3),
+    food: [],
+  };
 }
 
 export const useScheduleStore = create<ScheduleState & ScheduleActions>()(
@@ -80,6 +92,10 @@ export const useScheduleStore = create<ScheduleState & ScheduleActions>()(
 
       resetToDefault: () => {
         set({ schedules: buildDefaultSchedules() });
+      },
+
+      initializeForGroup: (group) => {
+        set({ schedules: buildGroupSchedules(group) });
       },
     }),
     {

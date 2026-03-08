@@ -7,7 +7,7 @@ import type { Coordinates } from "@/types/venue";
 
 export type ScheduleDay = 1 | 2 | 3 | "food";
 
-interface ScheduleMap {
+export interface ScheduleMap {
   1: string[];
   2: string[];
   3: string[];
@@ -30,6 +30,8 @@ interface ScheduleActions {
   reorderByDistance: (day: ScheduleDay) => void;
   resetToDefault: () => void;
   initializeForGroup: (group: GroupNumber) => void;
+  // 공유 링크에서 받은 일정을 현재 일정에 적용
+  applySharedSchedule: (sharedSchedules: ScheduleMap) => void;
 }
 
 function buildDefaultSchedules(): ScheduleMap {
@@ -217,6 +219,16 @@ export const useScheduleStore = create<ScheduleState & ScheduleActions>()(
               : { ...state.groupScheduleMap, [group]: schedules },
           };
         });
+      },
+
+      applySharedSchedule: (sharedSchedules) => {
+        set((state) => ({
+          schedules: sharedSchedules,
+          groupScheduleMap:
+            state.activeGroup !== null
+              ? { ...state.groupScheduleMap, [state.activeGroup]: sharedSchedules }
+              : state.groupScheduleMap,
+        }));
       },
     }),
     {

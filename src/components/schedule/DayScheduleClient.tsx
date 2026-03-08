@@ -5,6 +5,7 @@ import { getVenueById } from "@/data/venues";
 import { useScheduleStore } from "@/store/useScheduleStore";
 import { VenueCard } from "@/components/venue/VenueCard";
 import { SearchVenueModal } from "./SearchVenueModal";
+import { ShareScheduleModal } from "./ShareScheduleModal";
 import type { DayRoute } from "@/types/route";
 
 interface DayScheduleClientProps {
@@ -15,6 +16,7 @@ interface DayScheduleClientProps {
 export function DayScheduleClient({ dayNumber, route }: DayScheduleClientProps) {
   const [mounted, setMounted] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
   const { schedules, removeVenueFromDay, moveVenueUp, moveVenueDown, resetToDefault, reorderByDistance } =
     useScheduleStore();
 
@@ -135,10 +137,23 @@ export function DayScheduleClient({ dayNumber, route }: DayScheduleClientProps) 
         >
           초기화
         </button>
+        <button
+          onClick={() => setShowShareModal(true)}
+          className="px-4 py-3 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded-xl text-sm font-semibold transition-all"
+          aria-label="일정 공유"
+        >
+          공유
+        </button>
       </div>
 
       {/* 장소 검색 모달 */}
       {showSearch && <SearchVenueModal onClose={() => setShowSearch(false)} />}
+
+      {/* 일정 공유 모달 */}
+      <ShareScheduleModal
+        isOpen={showShareModal}
+        onClose={() => setShowShareModal(false)}
+      />
     </div>
   );
 }

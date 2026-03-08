@@ -1,6 +1,6 @@
 import type { Venue } from "@/types/venue";
 
-// 전체 22개 장소 데이터 (IBT 가이드 반영)
+// 전체 38개 장소 데이터 (IBT 가이드 반영 + 추가 명소)
 export const venues: Venue[] = [
   // ===== Day 1 (5개) - IBT Day 1: Inspiration =====
   // 공식 일정: 지다오 점심(11:00-13:00) → 바이두파크(13:30-15:00) → 딥블루(15:30-17:00) → 왕츠핀취이 저녁(18:00~) → 호텔 복귀
@@ -525,6 +525,144 @@ export const venues: Venue[] = [
       { type: "must_know", content: "지하철 2호선 난징동루역 4번 출구 바로 앞" },
     ],
     order: 27,
+  },
+
+  // ===== 추가 명소 8개 (자유 일정 추천) =====
+  {
+    id: "extra-chenghuang",
+    name: { ko: "성황묘", zh: "城隍庙" },
+    category: "attraction",
+    dayNumber: 3,
+    coordinates: { lat: 31.2270, lng: 121.4928 },
+    address: {
+      ko: "황포구 팡빙중루 249호",
+      zh: "上海市黄浦区方浜中路249号",
+    },
+    description: "600년 된 상하이 도교 사원 — 다양한 거리음식 체험 가능",
+    tips: [
+      { type: "recommendation", content: "주변 예위안(豫园) 함께 방문 추천" },
+      { type: "must_know", content: "탕후루, 난샹만터우 등 거리음식 체험 가능" },
+    ],
+    order: 28,
+  },
+  {
+    id: "extra-1000trees",
+    name: { ko: "1000 Trees", zh: "一千棵树" },
+    category: "attraction",
+    dayNumber: 3,
+    coordinates: { lat: 31.2391, lng: 121.4427 },
+    address: {
+      ko: "푸퉈구 모간산루 600호",
+      zh: "上海市普陀区莫干山路600号",
+    },
+    description: "유명 건축가 토마스 헤더윅이 설계한 현대적인 예술과 자연을 접목한 복합 공간",
+    tips: [
+      { type: "recommendation", content: "건물 옥상에 1000그루의 나무가 심어진 독특한 건축물" },
+      { type: "recommendation", content: "인근 M50 창작 예술구 함께 방문 추천" },
+    ],
+    order: 29,
+  },
+  {
+    id: "extra-bund",
+    name: { ko: "와이탄 (황푸강변)", zh: "外滩 The Bund" },
+    category: "nightview",
+    dayNumber: 3,
+    coordinates: { lat: 31.2401, lng: 121.4901 },
+    address: {
+      ko: "황포구 중산동이로",
+      zh: "上海市黄浦区中山东一路",
+    },
+    description: "상하이의 스카이라인을 한눈에 구경할 수 있는 스팟 — 동방명주·루자쭈이 뷰 포인트",
+    tips: [
+      { type: "recommendation", content: "야경 필수 방문 — 일몰 후 30분이 가장 아름다운 시간" },
+      { type: "must_know", content: "와이탄 22호(外滩22号) 레스토랑에서 창가 뷰 즐기며 식사 가능" },
+    ],
+    order: 30,
+  },
+  {
+    id: "extra-bluebottle",
+    name: { ko: "블루보틀 커피", zh: "蓝瓶咖啡 Blue Bottle Coffee" },
+    category: "cafe",
+    dayNumber: 2,
+    coordinates: { lat: 31.2380, lng: 121.4448 },
+    address: {
+      ko: "징안구 창화루 908호 (위통루 근처)",
+      zh: "上海市静安区昌化路908号(近裕通路)",
+    },
+    description: "블루보틀 커피 중국 1호점",
+    tips: [
+      { type: "recommendation", content: "미국 샌프란시스코 발 프리미엄 스페셜티 커피 브랜드" },
+      { type: "must_know", content: "중국 최초 블루보틀 매장 — 심플하고 세련된 인테리어" },
+    ],
+    order: 31,
+  },
+  {
+    id: "extra-tsutaya",
+    name: { ko: "츠타야 서점", zh: "蔦屋書店 Tsutaya Books" },
+    category: "shopping",
+    dayNumber: 2,
+    coordinates: { lat: 31.2082, lng: 121.4282 },
+    address: {
+      ko: "창닝구 옌안서루 1262호 콜롬비아 서클 9동",
+      zh: "上海市长宁区延安西路1262号 上生·新所 9号楼",
+    },
+    description: "서양과 일본의 분위기가 함께 담긴 대형 서점 — 콜롬비아 서클 내 위치",
+    tips: [
+      { type: "recommendation", content: "일본 츠타야 서점의 감성을 그대로 — 책·라이프스타일 편집숍" },
+      { type: "must_know", content: "콜롬비아 서클(上生新所) 방문 시 함께 들르기 좋음" },
+    ],
+    order: 32,
+  },
+  {
+    id: "extra-provisional-govt",
+    name: { ko: "대한민국 임시정부", zh: "大韩民国临时政府旧址" },
+    category: "attraction",
+    dayNumber: 3,
+    coordinates: { lat: 31.2196, lng: 121.4742 },
+    address: {
+      ko: "황포구 마당로 306농 4호",
+      zh: "上海市黄浦区马当路306弄4号",
+    },
+    description: "독립운동 역사 되돌아보기 — 1919~1932년 대한민국 임시정부 소재지",
+    tips: [
+      { type: "must_know", content: "입장료 무료 (화요일 휴관) — 한국어 오디오 가이드 제공" },
+      { type: "recommendation", content: "신천지에서 도보 5분 거리 — 함께 방문 추천" },
+    ],
+    order: 33,
+  },
+  {
+    id: "extra-duoyun",
+    name: { ko: "두오원 서점", zh: "朵云书院" },
+    category: "shopping",
+    dayNumber: 2,
+    coordinates: { lat: 31.2356, lng: 121.5013 },
+    address: {
+      ko: "푸동신구 인청중루 501호 상하이타워 52층",
+      zh: "上海市浦东新区银城中路501号 上海中心大厦 52F",
+    },
+    description: "상하이 타워 52층에 위치한 서점 겸 복합 문화 공간",
+    tips: [
+      { type: "recommendation", content: "세계에서 가장 높은 서점 중 하나 — 루자쭈이 360도 뷰" },
+      { type: "must_know", content: "상하이 타워 방문 시 함께 들르기 좋음 — 별도 입장료 없음" },
+    ],
+    order: 34,
+  },
+  {
+    id: "extra-rumors-coffee",
+    name: { ko: "Rumors Coffee", zh: "Rumors Coffee" },
+    category: "cafe",
+    dayNumber: 3,
+    coordinates: { lat: 31.2141, lng: 121.4557 },
+    address: {
+      ko: "쉬후이구 후난루 9호",
+      zh: "上海市徐汇区湖南路9号",
+    },
+    description: "핸드드립 커피를 맛볼 수 있는 작고 아늑한 카페",
+    tips: [
+      { type: "recommendation", content: "조용하고 아늑한 분위기 — 오래된 상하이 골목 감성" },
+      { type: "must_know", content: "싱글오리진 핸드드립 커피 전문 — 우캉루 인근" },
+    ],
+    order: 35,
   },
 ];
 

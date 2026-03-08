@@ -3,8 +3,8 @@ import { venues, getVenuesByDay, getVenueById } from "../venues";
 
 describe("venues data", () => {
   describe("데이터 완전성 검증", () => {
-    it("총 30개의 장소가 있다", () => {
-      expect(venues).toHaveLength(30);
+    it("총 38개의 장소가 있다", () => {
+      expect(venues).toHaveLength(38);
     });
 
     it("각 장소는 id를 가진다", () => {
@@ -91,9 +91,9 @@ describe("venues data", () => {
   });
 
   describe("Day 2 장소 (14개)", () => {
-    it("Day 2에 14개의 장소가 있다", () => {
+    it("Day 2에 17개의 장소가 있다", () => {
       const day2Venues = getVenuesByDay(2);
-      expect(day2Venues).toHaveLength(14);
+      expect(day2Venues).toHaveLength(17);
     });
 
     it("허마셴성이 Day 2 첫 번째 장소이다", () => {
@@ -138,9 +138,9 @@ describe("venues data", () => {
   });
 
   describe("Day 3 장소 (9개)", () => {
-    it("Day 3에 9개의 장소가 있다", () => {
+    it("Day 3에 14개의 장소가 있다", () => {
       const day3Venues = getVenuesByDay(3);
-      expect(day3Venues).toHaveLength(9);
+      expect(day3Venues).toHaveLength(14);
     });
 
     it("젤네일이 따종 앱 예약 정보를 가진다", () => {
